@@ -9,10 +9,12 @@ study2 = optuna.load_study(study_name="test", storage="postgresql+psycopg2://roo
 study2.optimize(objective, n_trials=10)
 study3 = optuna.load_study(study_name="test", storage="sqlite:///data/sample.db")
 study3.optimize(objective, n_trials=10)
-
+study4 = optuna.load_study(study_name="test", storage="mssql+pymssql://sa:optuna-test-5ZYB@mssql/optuna?charset=utf8")
+study4.optimize(objective, n_trials=10)
 
 print(study1)
 print(study2)
 print(study3)
+print(study4)
 
 print("done")

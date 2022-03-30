@@ -21,6 +21,13 @@ services:
     command: "redis-server"
     ports:
       - "6379:6379"
+  mssql:
+    image: "mcr.microsoft.com/mssql/server:2019-CU15-ubuntu-20.04"
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=optuna-test-5ZYB
+    ports:
+      - "1433:1433"
   optuna-210:
     build:
       context: .
