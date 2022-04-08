@@ -29,6 +29,7 @@ services:
     ports:
       - "1433:1433"
   optuna-210:
+    platform: linux/amd64
     build:
       context: .
       dockerfile: ./docker/optuna-210/Dockerfile
@@ -36,6 +37,7 @@ services:
       - ./src:/work/src
       - ./data:/work/data
   optuna-300:
+    platform: linux/amd64
     build:
       context: .
       dockerfile: ./docker/optuna-300/Dockerfile
