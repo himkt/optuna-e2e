@@ -1,0 +1,20 @@
+name: docker-compose
+
+on:
+  push: {}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        version: ["optuna-210", "optuna-300", "optuna-301", "optuna-latest"]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: build-and-run
+        shell: bash
+        run: |
+          docker compose build ${{ matrix.version }}
+          docker run --rm ${{ matrix.version }} ls
