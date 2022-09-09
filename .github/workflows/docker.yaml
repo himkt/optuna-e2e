@@ -17,8 +17,13 @@ jobs:
         run: |
           docker compose up -d mysql postgresql redis mssql
 
-      - name: build-and-run
-        shell: bash
+      - name: build
         run: |
           docker compose build ${{ matrix.version }}
-          docker compose run --rm ${{ matrix.version }} ls
+
+      - name: run
+        run: |
+          docker compose run --rm ${{ matrix.version }} python src/init.py
+          docker compose run --rm ${{ matrix.version }} bash src/upgrade.sh
+          docker compose run --rm ${{ matrix.version }} bash src/redis/upgrade.sh
+          docker compose run --rm ${{ matrix.version }} python src/load.py
