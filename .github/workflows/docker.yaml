@@ -17,4 +17,4 @@ jobs:
         shell: bash
         run: |
           docker compose build ${{ matrix.version }}
-          docker run --rm ${{ matrix.version }} ls
+          docker compose run --rm ${{ matrix.version }} ls
